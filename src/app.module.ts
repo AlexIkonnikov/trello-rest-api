@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './models/users/user.entity';
-import { Columns } from './models/columns/column.entity';
-import { Card } from './models/cards/card.entity';
-import { Comment } from './models/comments/comment.entity';
+import { User } from './users/user.entity';
+import { Columns } from './columns/column.entity';
+import { Card } from './cards/card.entity';
+import { Comment } from './comments/comment.entity';
 
 @Module({
   controllers: [AppController],
