@@ -6,18 +6,22 @@ import { User } from './users/user.entity';
 import { Columns } from './columns/column.entity';
 import { Card } from './cards/card.entity';
 import { Comment } from './comments/comment.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   controllers: [AppController],
   providers: [AppService],
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env'
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: '',
-      password: 'root',
-      database: 'Aleksandr',
+      host: process.env.POSTGRESS_HOST,
+      port: Number(process.env.POSTGRESS_PORT),
+      username: process.env.POSTGRESS_USER,
+      password: process.env.POSTGRESS_PASSWORD,
+      database: process.env.POSTGRESS_DB,
       entities: [User, Columns, Card, Comment],
       synchronize: true,
     })
