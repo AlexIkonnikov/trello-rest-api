@@ -11,6 +11,6 @@ export class Columns {
     @IsString()
     title: string
     
-    @ManyToOne(() => User, user => user.id)
+    @ManyToOne(() => User, user => user.id, { onDelete: 'CASCADE' })
     user: User
 }

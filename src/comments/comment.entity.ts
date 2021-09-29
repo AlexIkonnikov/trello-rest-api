@@ -4,7 +4,7 @@ import { Card } from "../cards/card.entity";
 import { User } from "../users/user.entity";
 
 @Entity('comments')
-export class Comment{
+export class Comment {
 
     @PrimaryGeneratedColumn()
     id: number
@@ -17,9 +17,9 @@ export class Comment{
     @IsDate()
     createdDate: Date
 
-    @ManyToOne(() => User, user => user.id)
+    @ManyToOne(() => User, user => user.id, { onDelete: 'CASCADE' })
     user: User
 
-    @ManyToOne(() => Card, card => card.id)
+    @ManyToOne(() => Card, card => card.id, { onDelete: 'CASCADE' })
     card: Card
 }

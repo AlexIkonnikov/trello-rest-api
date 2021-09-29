@@ -17,9 +17,9 @@ export class Card {
     @IsString()
     description: string
 
-    @ManyToOne(() => User, user => user.id)
+    @ManyToOne(() => User, user => user.id, { onDelete: 'CASCADE' })
     user: User
 
-    @ManyToOne(() => Columns, columns => columns.id)
+    @ManyToOne(() => Columns, columns => columns.id, { onDelete: 'CASCADE' })
     column: Columns
 }
