@@ -2,8 +2,15 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { IsDate, IsEmail, IsString } from "class-validator";
 import { User } from "../users/user.entity";
 
-@Entity('columns')
+const tableName = 'columns';
+
+@Entity({
+    name: tableName
+})
 export class Columns {
+
+    static tableName = tableName;
+
     @PrimaryGeneratedColumn()
     id: number
 

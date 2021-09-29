@@ -2,8 +2,14 @@ import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from "typeorm";
 import { IsEmail, IsString } from "class-validator";
 import * as bcrypt from 'bcrypt';
 
-@Entity('users')
+const tableName = 'users';
+
+@Entity({
+    name: tableName
+})
 export class User {
+    static tableName = tableName;
+    
     @PrimaryGeneratedColumn()
     id: number
 

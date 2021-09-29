@@ -3,8 +3,14 @@ import { Columns } from "../columns/column.entity";
 import { User } from "../users/user.entity";
 import { IsDate, IsEmail, IsString } from "class-validator";
 
-@Entity('cards')
+const tableName = 'cards';
+
+@Entity({
+    name: tableName
+})
 export class Card {
+
+    static tableName = tableName;
 
     @PrimaryGeneratedColumn()
     id: number
