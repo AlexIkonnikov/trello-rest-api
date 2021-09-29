@@ -10,7 +10,10 @@ export class Columns {
     @Column()
     @IsString()
     title: string
-    
+
+    @Column()
+    userId: number
+
     @ManyToOne(() => User, user => user.id, { onDelete: 'CASCADE' })
     user: User
 }

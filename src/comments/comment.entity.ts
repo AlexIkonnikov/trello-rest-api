@@ -17,6 +17,12 @@ export class Comment {
     @IsDate()
     createdDate: Date
 
+    @Column()
+    userId: number
+
+    @Column()
+    cardId: number
+
     @ManyToOne(() => User, user => user.id, { onDelete: 'CASCADE' })
     user: User
 

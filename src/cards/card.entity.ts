@@ -17,6 +17,12 @@ export class Card {
     @IsString()
     description: string
 
+    @Column()
+    userId: number
+
+    @Column()
+    columnId: number
+
     @ManyToOne(() => User, user => user.id, { onDelete: 'CASCADE' })
     user: User
 
