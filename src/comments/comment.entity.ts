@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { IsDate, IsEmail, IsString } from "class-validator";
 import { Card } from "../cards/card.entity";
 import { User } from "../users/user.entity";
 
@@ -9,10 +10,12 @@ export class Comment{
     id: number
 
     @Column()
+    @IsString()
     text: string
 
     @Column()
-    createdDate: string
+    @IsDate()
+    createdDate: Date
 
     @ManyToOne(() => User, user => user.id)
     user: User
