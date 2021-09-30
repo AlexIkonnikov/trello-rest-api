@@ -14,11 +14,11 @@ export class Columns {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
+    @Column({ type: 'varchar', length: 50 })
     @IsString()
     title: string
 
-    @Column()
+    @Column({ type: 'integer' })
     userId: number
 
     @ManyToOne(() => User, user => user.id, { onDelete: 'CASCADE' })

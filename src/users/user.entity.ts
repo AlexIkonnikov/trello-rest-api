@@ -9,19 +9,19 @@ const tableName = 'users';
 })
 export class User {
     static tableName = tableName;
-    
+
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({ unique: true })
+    @Column({ type: 'varchar', unique: true })
     @IsEmail()
     email: string
 
-    @Column()
+    @Column({ type: 'varchar' })
     @IsString()
     name: string
 
-    @Column()
+    @Column({ type: 'char' })
     password: string
 
     @BeforeInsert()

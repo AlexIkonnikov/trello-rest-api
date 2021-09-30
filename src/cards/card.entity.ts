@@ -15,18 +15,18 @@ export class Card {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
+    @Column({ type: 'varchar', length: 50 })
     @IsString()
     title: string
 
-    @Column()
+    @Column({ type: 'varchar' })
     @IsString()
     description: string
 
-    @Column()
+    @Column({ type: 'integer' })
     userId: number
 
-    @Column()
+    @Column({ type: 'integer' })
     columnId: number
 
     @ManyToOne(() => User, user => user.id, { onDelete: 'CASCADE' })

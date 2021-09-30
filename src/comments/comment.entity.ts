@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { IsDate, IsEmail, IsString } from "class-validator";
 import { Card } from "../cards/card.entity";
 import { User } from "../users/user.entity";
@@ -15,18 +15,22 @@ export class Comment {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
+    @Column({ type: 'text' })
     @IsString()
     text: string
 
-    @Column()
+    @CreateDateColumn({ type: 'timestamp' })
     @IsDate()
-    createdDate: Date
+    createdAt: Date
 
-    @Column()
+    @UpdateDateColumn({ type: 'timestamp' })
+    @IsDate()
+    updatedAt: Date
+
+    @Column({ type: 'integer' })
     userId: number
 
-    @Column()
+    @Column({ type: 'integer' })
     cardId: number
 
     @ManyToOne(() => User, user => user.id, { onDelete: 'CASCADE' })
