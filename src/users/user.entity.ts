@@ -5,7 +5,7 @@ import * as bcrypt from 'bcrypt';
 const tableName = 'users';
 
 @Entity({
-    name: tableName
+    name: tableName,
 })
 export class User {
     static tableName = tableName;
@@ -21,7 +21,7 @@ export class User {
     @IsString()
     name: string
 
-    @Column({ type: 'char' })
+    @Column({ type: 'varchar' })
     password: string
 
     @BeforeInsert()

@@ -7,6 +7,7 @@ import { Columns } from './columns/column.entity';
 import { Card } from './cards/card.entity';
 import { Comment } from './comments/comment.entity';
 import { ConfigModule } from '@nestjs/config';
+import { UserModule } from './users/user.module';
 
 @Module({
   controllers: [AppController],
@@ -24,7 +25,8 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.POSTGRESS_DB,
       entities: [User, Columns, Card, Comment],
       synchronize: true,
-    })
+    }),
+    UserModule
   ],
 })
 export class AppModule {}
