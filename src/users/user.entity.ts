@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from "typeorm";
-import { IsEmail, IsString } from "class-validator";
 import * as bcrypt from 'bcrypt';
 
 const tableName = 'users';
@@ -14,11 +13,9 @@ export class User {
     id: number
 
     @Column({ type: 'varchar', unique: true })
-    @IsEmail()
     email: string
 
     @Column({ type: 'varchar' })
-    @IsString()
     name: string
 
     @Column({ type: 'varchar' })

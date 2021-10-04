@@ -8,6 +8,7 @@ import { Card } from './cards/card.entity';
 import { Comment } from './comments/comment.entity';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './users/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   controllers: [AppController],
@@ -26,7 +27,8 @@ import { UserModule } from './users/user.module';
       entities: [User, Columns, Card, Comment],
       synchronize: true,
     }),
-    UserModule
+    UserModule,
+    AuthModule
   ],
 })
 export class AppModule {}
