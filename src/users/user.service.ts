@@ -21,8 +21,4 @@ export class UserService {
         const user = await this.usersRepository.findOne({ where: { email } });
         return user;
     }
-
-    getAll() {
-        return this.usersRepository.find();
-    }
 }

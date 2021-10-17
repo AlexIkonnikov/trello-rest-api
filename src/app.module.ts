@@ -9,6 +9,7 @@ import { Comment } from './comments/comment.entity';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
+import { ColumnsModule } from './columns/column.module';
 
 @Module({
   controllers: [AppController],
@@ -28,7 +29,8 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true,
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    ColumnsModule
   ],
 })
 export class AppModule {}

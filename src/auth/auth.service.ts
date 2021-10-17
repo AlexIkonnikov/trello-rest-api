@@ -12,22 +12,20 @@ export class AuthService {
     async registration(userDto: CreateUserDto) {
         const newUser = await this.userService.getUserByEmail(userDto.email);
         if (newUser) {
-            throw new HttpException('User already exist', HttpStatus.BAD_REQUEST);
+            throw new HttpException('User already exist', HttpStatus.CONFLICT);
         }
         const user = await this.userService.createUser({ ...userDto });
-        return this.generateToken(user);
+        return { ...user, token: this.generateToken(user) };
     }
 
     async login(loginDto: LoginUserDto) {
         const user = await this.validateUser(loginDto);
-        return this.generateToken(user);
+        return { ...user, token: this.generateToken(user) };
     }
 
     private generateToken(user: User) {
         const payload = { email: user.email, id: user.id };
-        return {
-            token: this.jwtService.sign(payload)
-        }
+        return this.jwtService.sign(payload);
     }
 
     private async validateUser(loginDto: LoginUserDto) {

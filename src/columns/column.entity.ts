@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
 import { IsDate, IsEmail, IsString } from "class-validator";
 import { User } from "../users/user.entity";
+import { Card } from "src/cards/card.entity";
 
 const tableName = 'columns';
 
