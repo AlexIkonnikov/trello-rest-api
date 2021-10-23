@@ -16,7 +16,7 @@ import { ColumnsModule } from './columns/column.module';
   providers: [AppService],
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env'
+      envFilePath: '.env',
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -30,7 +30,7 @@ import { ColumnsModule } from './columns/column.module';
     }),
     UserModule,
     AuthModule,
-    ColumnsModule
+    ColumnsModule,
   ],
 })
 export class AppModule {}
