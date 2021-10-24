@@ -1,7 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { Columns } from '../columns/column.entity';
 import { User } from '../users/user.entity';
 import { IsDate, IsEmail, IsString } from 'class-validator';
+import { Comment } from 'src/comments/comment.entity';
 
 const tableName = 'cards';
 
@@ -18,7 +25,7 @@ export class Card {
   @IsString()
   title: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   @IsString()
   description: string;
 
@@ -33,4 +40,7 @@ export class Card {
 
   @ManyToOne(() => Columns, (columns) => columns.id, { onDelete: 'CASCADE' })
   column: Columns;
+
+  @OneToMany(() => Comment, (comment) => comment.card)
+  comments: Comment[];
 }

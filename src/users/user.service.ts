@@ -20,4 +20,16 @@ export class UserService {
     const user = await this.usersRepository.findOne({ where: { email } });
     return user;
   }
+
+  async getUserById(id: string) {
+    return await this.usersRepository.findOne(id);
+  }
+
+  async getUserPassword(email: string) {
+    return await this.usersRepository
+      .createQueryBuilder('user')
+      .select('user.email', email)
+      .addSelect('user.password')
+      .getOne();
+  }
 }

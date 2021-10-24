@@ -8,6 +8,7 @@ import {
 import { IsDate, IsEmail, IsString } from 'class-validator';
 import { User } from '../users/user.entity';
 import { Card } from 'src/cards/card.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 const tableName = 'columns';
 
@@ -29,4 +30,7 @@ export class Columns {
 
   @ManyToOne(() => User, (user) => user.id, { onDelete: 'CASCADE' })
   user: User;
+
+  @OneToMany(() => Card, (card) => card.column)
+  cards: Card[];
 }

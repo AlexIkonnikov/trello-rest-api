@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/users/user.entity';
 import { Repository } from 'typeorm';
-import { CreateColumnDto } from './column.dto';
 import { Columns } from './column.entity';
+import { IColumn } from '../interfaces/column.interface';
 
 @Injectable()
 export class ColumnService {
@@ -12,9 +11,16 @@ export class ColumnService {
     private columnRepository: Repository<Columns>,
   ) {}
 
-  createColumn(dto: CreateColumnDto) {
-    const column = this.columnRepository.create(dto);
+  createColumn(newColumn: IColumn) {
+    const column = this.columnRepository.create(newColumn);
     this.columnRepository.save(column);
+  }
+
+  async getColumnById(id: string) {
+    return await this.columnRepository.findOne({
+      where: { id },
+      relations: ['cards'],
+    });
   }
 
   async getAllColumn() {
@@ -22,7 +28,9 @@ export class ColumnService {
   }
 
   async getUserColumns(id: string) {
-    return await this.columnRepository.find({ where: { userId: id } });
+    return await this.columnRepository.find({
+      where: { userId: id },
+    });
   }
 
   async deleteUserColumn(id: string) {
